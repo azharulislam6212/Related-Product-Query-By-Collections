@@ -1,0 +1,24 @@
+  {%- if product.collections != empty -%}
+
+    {%- assign current_product = product -%}
+   
+    {% assign product_collection = collection.title | link_to: product.url %}
+
+    <div class="related-product">
+    
+      <h3 class="related-product__heading">GREAT COMPANIONS </h3>
+    <ul class="related-product__list related-product__slider-js products ">
+
+        {% for rproduct in collection.products limit: 4 %}
+          {%- unless rproduct.handle contains current_product.handle %}
+          <li class="related-product__item">
+            {% render 'product-card' , product: rproduct  %}
+          </li>
+        {% endunless -%}
+        {%- endfor -%}
+    
+      {%- endif -%}
+      
+   </ul>
+
+</div>
